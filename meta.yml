@@ -1,6 +1,4 @@
 ---
-- include: openshift-ansible-contrib/playbooks/cloudformation_setup.yml
-
 - include: openshift-ansible-contrib/playbooks/group_setup.yml
 
 - include: openshift-ansible-contrib/playbooks/ops_mirror.yml
