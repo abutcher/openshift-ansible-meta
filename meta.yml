@@ -40,30 +40,6 @@
         registry: 30
         logging: 30
         metrics: 30
-    provider_defaults:
-      ec2:
-        tags:
-          env: "{{ cluster_id }}"
-        groups: ["tag_env_{{ cluster_id }}"]
-        master:
-          groups:
-          - "tag_openshift-master_{{ cluster_id }}"
-          - "tag_openshift-node_{{ cluster_id }}"
-          - tag_node-region_master
-          security_groups:
-          - "{{ cluster_id }}-master"
-          - "{{ cluster_id }}-node"
-          tags:
-            openshift-master: "{{ cluster_id }}"
-            openshift-node: "{{ cluster_id }}"
-            node-region: master
-        node:
-          groups:
-          - "tag_openshift-node_{{ cluster_id }}"
-          security_groups:
-          - "{{ cluster_id }}-node"
-          tags:
-            openshift-node: "{{ cluster_id }}"
     deployment_type: "{{ deployment_type }}"
     openshift_cluster_id: "{{ cluster_id }}"
     openshift_debug_level: "{{ debug_level }}"
@@ -79,14 +55,14 @@
     openshift_master_api_port: "{{ console_port }}"
     openshift_master_console_port: "{{ console_port }}"
     openshift_package_version: 3.1.1.6
-    openshift_master_logging_public_url: "https://kibana.{{ r53_wildcard_zone }}"
-    openshift_master_metrics_public_url: "https://metrics.{{ r53_wildcard_zone }}/hawkular/metrics"
+    openshift_master_logging_public_url: "https://kibana.apps.{{ cluster_id }}.{{ env_id }}.{{ r53_zone }}"
+    openshift_master_metrics_public_url: "https://metrics.apps.{{ cluster_id }}.{{ env_id }}.{{ r53_zone }}/hawkular/metrics"
     osm_cluster_network_cidr: 10.0.0.0/8
     osm_host_subnet_length: 16
-    osm_default_subdomain: "{{ r53_wildcard_zone }}"
+    osm_default_subdomain: "apps.{{ cluster_id }}.{{ env_id }}.{{ r53_zone }}"
     osm_default_node_selector: "env=demo"
     osm_use_cockpit: false
     openshift_master_cluster_method: native
-    openshift_master_cluster_hostname: openshift.internal.{{ r53_host_zone }}
-    openshift_master_cluster_public_hostname: openshift.{{ r53_host_zone }}
+    openshift_master_cluster_hostname: openshift.internal.{{ cluster_id }}.{{ env_id }}.{{ r53_zone }}
+    openshift_master_cluster_public_hostname: openshift.{{ cluster_id }}.{{ env_id }}.{{ r53_zone }}
     os_firewall_enabled: False
