@@ -1,7 +1,7 @@
 ---
-- include: openshift-ansible-contrib/playbooks/group_setup.yml
+- include: openshift-ansible-contrib/playbooks/provisioning/aws/cloudformation/group_setup.yml
 
-- include: openshift-ansible-contrib/playbooks/ops_mirror.yml
+- include: openshift-ansible-contrib/playbooks/provisioning/aws/cloudformation/ops_mirror.yml
 
 - include: openshift-ansible/playbooks/byo/openshift-cluster/config.yml
   vars:
